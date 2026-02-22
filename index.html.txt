@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Momento ❤️</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff5f5;
+            color: #4a4a4a;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background: #ff4d6d;
+            color: white;
+            padding: 50px 20px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        .container { padding: 40px 20px; max-width: 800px; margin: auto; }
+        .photo-placeholder {
+            width: 250px; height: 250px;
+            background: #ddd; border-radius: 50%;
+            margin: 20px auto; border: 5px solid #ff4d6d;
+            overflow: hidden;
+        }
+        .photo-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+        .heart { color: #ff4d6d; font-size: 30px; animation: beat 1s infinite; }
+        @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+        .message { font-style: italic; font-size: 1.2rem; line-height: 1.6; margin-top: 30px; }
+        .footer { margin-top: 50px; font-size: 0.8rem; color: #999; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Para: [Nome do Parceiro] ❤️</h1>
+        <p>Um pequeno lugar no mundo só para nós dois.</p>
+    </div>
+
+    <div class="container">
+        <div class="photo-placeholder">
+            <img src="https://via.placeholder.com/250" alt="Nossa Foto">
+        </div>
+
+        <div class="heart">❤️</div>
+
+        <div class="message">
+            "Aqui você pode escrever como se conheceram ou uma mensagem especial. 
+            Como você trabalha com QA, pense neste site como o único projeto 
+            que não aceita 'bugs' no amor!"
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #ffccd5; margin: 40px 0;">
+        
+        <h3>Nossa Contagem</h3>
+        <p>Juntos desde: <strong>DD/MM/AAAA</strong></p>
+    </div>
+
+    <div class="footer">Feito com ❤️ por Geovanna</div>
+
+</body>
+</html>
