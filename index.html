@@ -81,12 +81,12 @@
     </div>
 
     <div class="fotos-grupo">
-        <img src="bobo2.jpg" class="foto-perfil" alt="">
-
-        <img src="bobo3.jpg" class="foto-lateral" alt="Nós dois">
-        
+        <img src="bobo2.jpg" class="foto-lateral" alt="Nós dois">
         <img src="bobo1.jpg" class="foto-principal" alt="O aniversariante">
-        
+        <img src="bobo3.jpg" class="foto-lateral" alt="Momento especial">
+    </div>
+
+    <div class="cartao">
         <div class="baloes"> 🎂 🎉 🎁 </div>
         
         <h2>Parabéns, Bonitinho!</h2>
@@ -101,13 +101,13 @@
     </div>
 
     <script>
-        // AJUSTE A DATA AQUI (Ano, Mês-1, Dia) -> Janeiro é 0, Fevereiro é 1...
+        // Mantenha seu script aqui embaixo como já estava
         const dataInicio = new Date(2023, 5, 12); 
         const hoje = new Date();
         const diff = Math.abs(hoje - dataInicio);
         const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
         document.getElementById("contador").innerHTML = "Estamos juntos há " + dias + " dias de pura felicidade!";
     </script>
-
+    
 </body>
 </html>
