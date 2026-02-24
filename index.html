@@ -93,7 +93,7 @@
         <div class="baloes"> 🎂 🎉 🎁 🎈 💕 </div>
         
         <h1>Feliz Aniversario Bonitinho!</h1>
-        <p>Escrevi este site especialmente para você. Que possamos passar por muitos outros momentos especiais juntos. Feliz vida meu amor!</p>
+        <p>Que possamos passar por muitos outros momentos especiais juntos. Feliz vida meu amor!</p>
         <p>Agora... esta na hora de receber seus presentes!! </p>
 
         <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
@@ -101,9 +101,34 @@
         <p id="contador"></p>
         
         <br>
-        <a href="#" class="btn-presente" onclick="alert('Seu presente está te esperando 💖')">Clique aqui para receber seu presente</a>
+        <a href="#" class="btn-presente" onclick="comecarJogo()">Clique aqui para o seu presente</a>
     </div>
 
-    
+    <script>
+        function comecarJogo() {
+            // Pergunta 1
+            let pergunta1 = prompt("Qual é a data exata do nosso aniversário de namoro? (DD/MM/AAAA)");
+            
+            if (pergunta1 === "12/06/2023") { // Ajuste para a sua data real!
+                
+                // Pergunta 2
+                let pergunta2 = prompt("Qual é a comida favorita da sua Geovanna?").toLowerCase();
+                
+                if (pergunta2.includes("pizza") || pergunta2.includes("hamburguer")) { // Coloque a comida real aqui
+                    
+                    // Vitória!
+                    alert("PARABÉNS! Você passou no teste de QA do Amor! ❤️ Seu presente é...");
+                    window.location.href = "https://link-do-seu-presente-ou-outra-pagina.com";
+                    
+                } else {
+                    window.location.href = "errou.html";
+                }
+                
+            } else {
+                window.location.href = "errou.html";
+            }
+        }
+    <script>
+        
 </body>
 </html>
