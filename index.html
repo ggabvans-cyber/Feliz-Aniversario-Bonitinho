@@ -24,13 +24,32 @@
             border-bottom-left-radius: 50% 20%;
             border-bottom-right-radius: 50% 20%;
         }
-        .foto-perfil {
-            width: 200px; height: 200px;
-            border-radius: 50%;
-            border: 8px solid white;
+        .fotos-grupo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px; /* Espaço entre as fotos */
             margin: -100px auto 20px;
+        }
+        
+        .foto-principal {
+            width: 180px; 
+            height: 180px;
+            border-radius: 50%;
+            border: 6px solid white;
             object-fit: cover;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+        
+        .foto-lateral {
+            width: 100px; 
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0.9; /* Deixa as laterais levemente discretas */
         }
         .cartao {
             background: white;
@@ -61,8 +80,12 @@
         <p>Hoje o dia é todo seu vovô ranzinza, aproveite seu dia! </p>
     </div>
 
-    <div class="cartao">
+    <div class="fotos-grupo">
         <img src="bobo2.jpg" class="foto-perfil" alt="">
+
+        <img src="bobo3.jpg" class="foto-lateral" alt="Nós dois">
+        
+        <img src="bobo1.jpg" class="foto-principal" alt="O aniversariante">
         
         <div class="baloes"> 🎂 🎉 🎁 </div>
         
