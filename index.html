@@ -28,10 +28,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px; /* Espaço entre as fotos */
-            margin: -100px auto 20px;
+            gap: 15px;
+            margin-bottom: -90px; /* Isso faz as fotos "invadirem" o cartão de forma controlada */
+            position: relative;
+            z-index: 10; /* Garante que as fotos fiquem por cima de tudo */
         }
-        
         .foto-principal {
             width: 180px; 
             height: 180px;
@@ -41,7 +42,6 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             z-index: 2;
         }
-        
         .foto-lateral {
             width: 100px; 
             height: 100px;
@@ -54,10 +54,12 @@
         .cartao {
             background: white;
             max-width: 500px;
-            margin: 120px auto 40px;
-            padding: 30px;
+            margin: 20px auto 40px; /* Reduzi a margem do topo aqui */
+            padding: 100px 30px 30px; /* Aumentei o padding do topo para o texto não ser coberto */
             border-radius: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 1;
         }
         .btn-presente {
             background: var(--cor-principal);
