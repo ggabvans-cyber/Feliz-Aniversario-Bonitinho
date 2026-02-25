@@ -39,7 +39,22 @@
             z-index: 2;
         }
 
-        .pergunta { font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; }
+    .pergunta { 
+            font-size: 1.2rem; 
+            font-weight: bold; 
+            margin-bottom: 25px; 
+            text-align: center; /* Garante a centralização do texto */
+            display: block; 
+            width: 100%;
+        }
+        
+        /* Ajuste extra para garantir que o conteúdo do modal respire */
+        #quiz-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
         .opcoes { display: flex; flex-direction: column; gap: 10px; }
         
         button { 
