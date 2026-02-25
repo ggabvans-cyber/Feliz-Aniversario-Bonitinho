@@ -6,42 +6,44 @@
     <title>Desafio do Amor ❤️</title>
     <style>
         :root {
-            --cor-principal: #081534; /* O seu azul escuro */
-            --cor-fundo-site: #f5f6fa;
+            --cor-principal: #f5f5f5; /* Seu azul escuro */
             --cor-texto: #2f3640;
         }
 
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #ff4d6d; /* Fundo vibrante como na imagem */
+            background-color: #081534 !important; /* Forçando o azul no início */
             margin: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            transition: background-color 0.4s;
+            transition: background-color 0.4s ease;
+            overflow: hidden;
         }
 
         .titulo-topo {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: white;
             font-weight: bold;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-align: center;
+            padding: 0 10px;
         }
 
         .container { 
             background: white; 
-            width: 90%;
+            width: 85%;
             max-width: 400px; 
             padding: 25px; 
             border-radius: 25px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
 
         .pergunta { 
-            font-size: 1.3rem; 
+            font-size: 1.2rem; 
             font-weight: bold; 
             color: var(--cor-texto);
             margin-bottom: 25px;
@@ -59,7 +61,7 @@
             border: none; 
             border-radius: 15px; 
             cursor: pointer; 
-            font-size: 1.1rem; 
+            font-size: 1rem; 
             font-weight: bold; 
             transition: all 0.2s ease;
             background: #f1f2f6;
@@ -70,34 +72,19 @@
             box-shadow: 0 4px 0 #dcdde1;
         }
 
-        button:active { transform: translateY(3px); box-shadow: none; }
+        /* Feedback de Cores nos Botões */
+        .btn-correto { background-color: #2ecc71 !important; color: white !important; box-shadow: 0 4px 0 #27ae60 !important; }
+        .btn-errado { background-color: #e74c3c !important; color: white !important; box-shadow: 0 4px 0 #c0392b !important; animation: shake 0.4s; }
 
-        /* Estilos de Feedback (Igual à imagem) */
-        .btn-correto { 
-            background-color: #2ecc71 !important; 
-            color: white !important; 
-            box-shadow: 0 4px 0 #27ae60 !important;
-        }
-
-        .btn-errado { 
-            background-color: #e74c3c !important; 
-            color: white !important; 
-            box-shadow: 0 4px 0 #c0392b !important;
-            animation: shake 0.4s;
-        }
-
-        /* Ícones de feedback */
-        .icon { font-size: 1.2rem; }
+        /* Animação de Fundo (Flash de cor) */
+        .bg-vitoria { background-color: #27ae60 !important; }
+        .bg-falha { background-color: #c0392b !important; }
 
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-8px); }
             75% { transform: translateX(8px); }
         }
-
-        /* Cores de fundo dinâmicas */
-        .bg-vitoria { background-color: #2ecc71 !important; }
-        .bg-falha { background-color: #c0392b !important; }
     </style>
 </head>
 <body>
@@ -127,7 +114,9 @@
         let erros = 0;
 
         function carregarPergunta() {
+            // Remove as cores de flash para o fundo voltar a ser AZUL
             document.body.classList.remove("bg-vitoria", "bg-falha");
+            
             const p = perguntas[indexAtual];
             document.getElementById("texto-pergunta").innerText = p.q;
             const container = document.getElementById("lista-opcoes");
@@ -144,8 +133,6 @@
         function checarResposta(escolha, btn) {
             const correta = perguntas[indexAtual].a;
             const iconSpan = btn.querySelector(".icon");
-            
-            // Desabilita outros botões para evitar cliques múltiplos
             const todosBotoes = document.querySelectorAll("button");
             todosBotoes.forEach(b => b.style.pointerEvents = "none");
 
