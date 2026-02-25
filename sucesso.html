@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', sans-serif;
-            background: #081534; /* Cor escura para destacar as fotos */
+            background: #081534;
             overflow: hidden;
             display: flex;
             justify-content: center;
@@ -17,46 +17,37 @@
             height: 100vh;
         }
 
-        /* Container da Mensagem Central */
         .mensagem-vitoria {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             padding: 40px;
             border-radius: 30px;
             text-align: center;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            z-index: 10;
+            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+            z-index: 100; /* Garante que a mensagem fique na frente das fotos */
             max-width: 450px;
-            animation: popIn 1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+            position: relative;
         }
 
-        h1 { color: #ff4d6d; margin-bottom: 10px; }
-        p { color: #333; font-size: 1.1rem; line-height: 1.5; }
+        h1 { color: #ff4d6d; }
 
-        /* Estilo das Fotos Animadas ao Fundo */
-        .foto-flutuante {
+        /* Estilo das Fotos: Maiores e com Fade */
+        .foto-fade {
             position: absolute;
-            width: 120px;
-            height: 120px;
+            width: 250px; /* Aumentei o tamanho */
+            height: 250px; /* Aumentei o tamanho */
             object-fit: cover;
-            border-radius: 15px;
-            border: 3px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            opacity: 0.6;
-            animation: flutuar 15s linear infinite;
-            bottom: -150px;
+            border-radius: 20px;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            opacity: 0; /* Começam invisíveis */
+            animation: fadeInOut 8s infinite; /* Animação de aparecer e sumir */
         }
 
-        /* Animação para as fotos subirem */
-        @keyframes flutuar {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0); }
-            100% { transform: scale(1); }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: scale(0.8); }
+            20% { opacity: 0.8; transform: scale(1); }
+            80% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.1); }
         }
     </style>
 </head>
@@ -65,32 +56,27 @@
     <div class="mensagem-vitoria">
         <h1>🏆 Mestre em Geovanna!</h1>
         <p>Você provou que presta atenção em cada detalhe nosso. Parabéns, meu amor!</p>
-        <p><strong>Seu presente:</strong> [Escreva aqui o que é o presente ou onde ele está escondido!]</p>
+        <p><strong>Seu presente:</strong> [Digite aqui o presente]</p>
         <p>❤️ Feliz Aniversário! ❤️</p>
     </div>
 
     <script>
-        const totalFotos = 10;
-        // Se suas fotos tiverem nomes diferentes, mude aqui (ex: ['eu.jpg', 'nos.png'...])
-        const nomesFotos = ['bobo1.jpg', 'bobo2.jpg', 'bobo3.jpg', 'foto4.jpg', 'foto5.jpg', 'foto6.jpg', 'foto7.jpg', 'foto8.jpg', 'foto9.jpg', 'foto10.jpg'];
+        const nomesFotos = ['bobo1.jpg', 'bobo2.jpg', 'bobo3.jpg', 'juntos1.jpg', 'juntos2.jpg', 'juntos3.jpg', 'juntos4.jpg', 'juntos5.jpg', 'juntos6.jpg', 'juntos7.jpg', 'juntos8.jpg', 'juntos9.jpg', 'juntos10.jpg'];
 
-        for (let i = 0; i < totalFotos; i++) {
+        nomesFotos.forEach((foto, i) => {
             let img = document.createElement('img');
-            img.src = nomesFotos[i]; 
-            img.className = 'foto-flutuante';
+            img.src = foto; 
+            img.className = 'foto-fade';
             
-            // Posição horizontal aleatória
-            img.style.left = Math.random() * 90 + 'vw';
+            // Posições aleatórias na tela (evitando o centro onde está a mensagem)
+            img.style.left = Math.random() * 70 + 'vw';
+            img.style.top = Math.random() * 70 + 'vh';
             
-            // Atraso aleatório para não subirem todas juntas
-            img.style.animationDelay = Math.random() * 10 + 's';
-            
-            // Velocidade aleatória (entre 10s e 20s)
-            img.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            // Delays diferentes para as fotos não aparecerem todas juntas
+            img.style.animationDelay = (i * 1.5) + 's';
 
             document.body.appendChild(img);
-        }
+        });
     </script>
-
 </body>
 </html>
