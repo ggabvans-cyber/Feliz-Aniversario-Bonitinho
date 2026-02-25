@@ -94,15 +94,22 @@
         
         <h1>Feliz Aniversario Bonitinho!</h1>
         <p>Que possamos passar por muitos outros momentos especiais juntos. Feliz vida meu amor!</p>
-        <p>Agora... esta na hora de receber seus presentes!! </p>
+        <p>Agora esta na hora de receber seus presentes!! </p>
 
         <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
         
         <p id="contador"></p>
         
         <br>
-        <a href="quiz.html" class="btn-presente">Clique aqui para o seu presente</a>
+        <a href="javascript:void(0)" class="btn-presente" onclick="irParaQuiz()">Clique aqui para o seu presente</a>
     </div>
+
+    <script>
+        // Função para o alerta e redirecionamento
+        function irParaQuiz() {
+            alert("Mas antes prepare-se! Agora vamos ver se você conhece mesmo a sua bonitinha... Aperte OK para começar o desafio! 🧐❤️");
+            window.location.href = "quiz.html";
+    </script>
         
 </body>
 </html>
