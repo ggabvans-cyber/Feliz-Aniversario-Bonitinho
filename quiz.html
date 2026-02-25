@@ -58,4 +58,86 @@
 
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-1
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="titulo-topo">Conheço a minha bonitinha?</div>
+
+    <div class="container">
+        <div id="quiz-box">
+            <p class="pergunta" id="texto-pergunta">Carregando...</p>
+            <div class="opcoes" id="lista-opcoes"></div>
+        </div>
+    </div>
+
+    <script>
+        const perguntas = [
+            { q: "Qual minha cor favorita?", options: ["Azul", "Rosa", "Preto", "Roxo"], a: 0 },
+            { q: "Onde foi nosso primeiro beijo?", options: ["Carro", "Parque", "Cafeteria", "Shopping"], a: 3 },
+            { q: "O que eu mais disse no nosso primeiro encontro?", options: ["Entendi", "Hmmm?", "Você é Engraçado", "Legal"], a: 1 },
+            { q: "Qual dia do meu aniversario?", options: ["07", "17", "06", "27"], a: 0 },
+            { q: "Qual o dia do nosso aniversario de namoro?", options: ["28", "27", "02", "12"], a: 1 },
+            { q: "Quem disse 'te amo' primeiro?", options: ["Eu", "Você", "Os dois", "Ninguém"], a: 1 },
+            { q: "O que eu mais gosto de fazer?", options: ["Assistir Séries", "Comer", "Dormir", "Escutar Musica"], a: 2 },
+            { q: "Qual meu jogo favorito?", options: ["GTA", "The Sims 4", "Hogwarts", "It Takes Two"], a: 2 }
+        ];
+
+        let indexAtual = 0;
+        let erros = 0;
+
+        function carregarPergunta() {
+            document.body.classList.remove("bg-correto", "bg-errado");
+            const p = perguntas[indexAtual];
+            document.getElementById("texto-pergunta").innerText = p.q;
+            const container = document.getElementById("lista-opcoes");
+            container.innerHTML = "";
+
+            p.options.forEach((opt, i) => {
+                const btn = document.createElement("button");
+                btn.innerText = opt;
+                btn.onclick = () => checarResposta(i, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function checarResposta(escolha, btn) {
+            const correta = perguntas[indexAtual].a;
+            
+            if (escolha === correta) {
+                btn.classList.add("correto");
+                document.body.classList.add("bg-correto");
+                setTimeout(() => proxima(), 800);
+            } else {
+                btn.classList.add("errado");
+                document.body.classList.add("bg-errado");
+                erros++;
+                setTimeout(() => proxima(), 800);
+            }
+        }
+
+        function proxima() {
+            indexAtual++;
+            if (indexAtual < perguntas.length) {
+                carregarPergunta();
+            } else {
+                finalizar();
+            }
+        }
+
+        function finalizar() {
+            if (erros > perguntas.length / 2) {
+                window.location.href = "errou.html";
+            } else {
+                alert("Você passou! ❤️ O seu presente está logo ali...");
+                window.location.href = "sucesso.html"; // Crie essa página ou mude para o link do presente
+            }
+        }
+
+        carregarPergunta();
+    </script>
+</body>
+</html>
