@@ -5,76 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desafio do Amor ❤️</title>
     <style>
-        /* Centralização total da página */
+        :root {
+            /* Cores vibrantes para o estilo que você quer */
+            --cor-opcao1: #4cd137;
+            --cor-opcao2: #e84118;
+            --cor-fundo: #f5f6fa;
+            --cor-texto: #2f3640;
+        }
+
         body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background-color: #f5f5f5; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ff4d6d; /* Fundo vibrante como na imagem */
             margin: 0;
             display: flex;
-            flex-direction: column; /* Alinha os itens em coluna */
-            justify-content: center; /* Centraliza o grupo todo verticalmente */
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
             height: 100vh;
-            transition: background-color 0.5s ease;
-            overflow: hidden;
+            transition: background-color 0.4s;
         }
 
         .titulo-topo {
             font-size: 1.8rem;
-            color: #081534;
+            color: white;
             font-weight: bold;
-            margin-bottom: 20px; /* DISTÂNCIA ENTRE O TÍTULO E O MODAL */
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            z-index: 2;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
         .container { 
             background: white; 
-            color: #333; 
             width: 90%;
             max-width: 400px; 
-            padding: 30px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
-            z-index: 2;
+            padding: 25px; 
+            border-radius: 25px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
-    .pergunta { 
-            font-size: 1.2rem; 
+        .pergunta { 
+            font-size: 1.3rem; 
             font-weight: bold; 
-            margin-bottom: 25px; 
-            text-align: center; /* Garante a centralização do texto */
-            display: block; 
-            width: 100%;
+            color: var(--cor-texto);
+            margin-bottom: 25px;
+            text-align: center;
         }
-        
-        /* Ajuste extra para garantir que o conteúdo do modal respire */
-        #quiz-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+
+        .opcoes { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
         }
-        
-        .opcoes { display: flex; flex-direction: column; gap: 10px; }
         
         button { 
-            padding: 15px; border: none; border-radius: 10px; cursor: pointer; 
-            font-size: 1rem; font-weight: bold; transition: 0.3s; background: #eee;
+            padding: 18px; 
+            border: none; 
+            border-radius: 15px; 
+            cursor: pointer; 
+            font-size: 1.1rem; 
+            font-weight: bold; 
+            transition: all 0.2s ease;
+            background: #f1f2f6;
+            color: var(--cor-texto);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 0 #dcdde1;
         }
 
-        /* Cores dos botões e Animação de Chacoalhar */
-        .correto { background-color: #2ecc71 !important; color: white; animation: shake 0.5s; }
-        .errado { background-color: #e74c3c !important; color: white; animation: shake 0.5s; }
+        button:active { transform: translateY(3px); box-shadow: none; }
 
-        /* Classes para animar o FUNDO da página */
-        .bg-correto { background-color: #d4edda !important; } 
-        .bg-errado { background-color: #f8d7da !important; }
+        /* Estilos de Feedback (Igual à imagem) */
+        .btn-correto { 
+            background-color: #2ecc71 !important; 
+            color: white !important; 
+            box-shadow: 0 4px 0 #27ae60 !important;
+        }
+
+        .btn-errado { 
+            background-color: #e74c3c !important; 
+            color: white !important; 
+            box-shadow: 0 4px 0 #c0392b !important;
+            animation: shake 0.4s;
+        }
+
+        /* Ícones de feedback */
+        .icon { font-size: 1.2rem; }
 
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
         }
+
+        /* Cores de fundo dinâmicas */
+        .bg-vitoria { background-color: #2ecc71 !important; }
+        .bg-falha { background-color: #c0392b !important; }
     </style>
 </head>
 <body>
@@ -92,20 +117,19 @@
         const perguntas = [
             { q: "Qual minha cor favorita?", options: ["Azul", "Rosa", "Preto", "Roxo"], a: 0 },
             { q: "Onde foi nosso primeiro beijo?", options: ["Carro", "Parque", "Cafeteria", "Shopping"], a: 3 },
-            { q: "O que eu mais disse no nosso primeiro encontro?", options: ["Entendi", "Hmmm?", "Você é Engraçado", "Legal"], a: 1 },
-            { q: "Qual dia do meu aniversario?", options: ["07", "17", "06", "27"], a: 0 },
-            { q: "Qual minha comida favorita?", options: ["Frango com Mel e Mostarda", "Yakisoba", "Coraçãozinho", "Macarrão ao Molho Branco"], a: 3 },
-            { q: "Qual o dia do nosso aniversario de namoro?", options: ["28", "27", "02", "12"], a: 1 },
+            { q: "O que eu mais disse no 1º encontro?", options: ["Entendi", "Hmmm?", "Engraçado", "Legal"], a: 1 },
+            { q: "Qual dia do meu aniversário?", options: ["07", "17", "06", "27"], a: 0 },
+            { q: "Nosso aniversário de namoro?", options: ["28", "27", "02", "12"], a: 1 },
             { q: "Quem disse 'te amo' primeiro?", options: ["Eu", "Você", "Os dois", "Ninguém"], a: 1 },
-            { q: "O que eu mais gosto de fazer?", options: ["Assistir Séries", "Comer", "Dormir", "Escutar Musica"], a: 2 },
-            { q: "Qual meu jogo favorito?", options: ["GTA", "The Sims 4", "Hogwarts", "It Takes Two"], a: 1 }
+            { q: "O que eu mais gosto de fazer?", options: ["Séries", "Comer", "Dormir", "Música"], a: 2 },
+            { q: "Qual meu jogo favorito?", options: ["GTA", "The Sims 4", "Hogwarts", "It Takes Two"], a: 2 }
         ];
 
         let indexAtual = 0;
         let erros = 0;
 
         function carregarPergunta() {
-            document.body.classList.remove("bg-correto", "bg-errado");
+            document.body.classList.remove("bg-vitoria", "bg-falha");
             const p = perguntas[indexAtual];
             document.getElementById("texto-pergunta").innerText = p.q;
             const container = document.getElementById("lista-opcoes");
@@ -113,7 +137,7 @@
 
             p.options.forEach((opt, i) => {
                 const btn = document.createElement("button");
-                btn.innerText = opt;
+                btn.innerHTML = `<span>${opt}</span> <span class="icon"></span>`;
                 btn.onclick = () => checarResposta(i, btn);
                 container.appendChild(btn);
             });
@@ -121,16 +145,23 @@
 
         function checarResposta(escolha, btn) {
             const correta = perguntas[indexAtual].a;
+            const iconSpan = btn.querySelector(".icon");
             
+            // Desabilita outros botões para evitar cliques múltiplos
+            const todosBotoes = document.querySelectorAll("button");
+            todosBotoes.forEach(b => b.style.pointerEvents = "none");
+
             if (escolha === correta) {
-                btn.classList.add("correto");
-                document.body.classList.add("bg-correto");
-                setTimeout(() => proxima(), 800);
+                btn.classList.add("btn-correto");
+                iconSpan.innerHTML = "✅";
+                document.body.classList.add("bg-vitoria");
+                setTimeout(() => proxima(), 1000);
             } else {
-                btn.classList.add("errado");
-                document.body.classList.add("bg-errado");
+                btn.classList.add("btn-errado");
+                iconSpan.innerHTML = "❌";
+                document.body.classList.add("bg-falha");
                 erros++;
-                setTimeout(() => proxima(), 800);
+                setTimeout(() => proxima(), 1000);
             }
         }
 
@@ -147,8 +178,7 @@
             if (erros > perguntas.length / 2) {
                 window.location.href = "errou.html";
             } else {
-                alert("Você passou! ❤️ O seu presente está logo ali...");
-                window.location.href = "sucesso.html"; // Crie essa página ou mude para o link do presente
+                window.location.href = "sucesso.html"; 
             }
         }
 
