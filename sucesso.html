@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOCÊ CONSEGUIU! ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #081534; /* Cor escura para destacar as fotos */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container da Mensagem Central */
+        .mensagem-vitoria {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            z-index: 10;
+            max-width: 450px;
+            animation: popIn 1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+
+        h1 { color: #ff4d6d; margin-bottom: 10px; }
+        p { color: #333; font-size: 1.1rem; line-height: 1.5; }
+
+        /* Estilo das Fotos Animadas ao Fundo */
+        .foto-flutuante {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            opacity: 0.6;
+            animation: flutuar 15s linear infinite;
+            bottom: -150px;
+        }
+
+        /* Animação para as fotos subirem */
+        @keyframes flutuar {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mensagem-vitoria">
+        <h1>🏆 Mestre em Geovanna!</h1>
+        <p>Você provou que presta atenção em cada detalhe nosso. Parabéns, meu amor!</p>
+        <p><strong>Seu presente:</strong> [Escreva aqui o que é o presente ou onde ele está escondido!]</p>
+        <p>❤️ Feliz Aniversário! ❤️</p>
+    </div>
+
+    <script>
+        const totalFotos = 10;
+        // Se suas fotos tiverem nomes diferentes, mude aqui (ex: ['eu.jpg', 'nos.png'...])
+        const nomesFotos = ['bobo1.jpg', 'bobo2.jpg', 'bobo3.jpg', 'foto4.jpg', 'foto5.jpg', 'foto6.jpg', 'foto7.jpg', 'foto8.jpg', 'foto9.jpg', 'foto10.jpg'];
+
+        for (let i = 0; i < totalFotos; i++) {
+            let img = document.createElement('img');
+            img.src = nomesFotos[i]; 
+            img.className = 'foto-flutuante';
+            
+            // Posição horizontal aleatória
+            img.style.left = Math.random() * 90 + 'vw';
+            
+            // Atraso aleatório para não subirem todas juntas
+            img.style.animationDelay = Math.random() * 10 + 's';
+            
+            // Velocidade aleatória (entre 10s e 20s)
+            img.style.animationDuration = (Math.random() * 10 + 10) + 's';
+
+            document.body.appendChild(img);
+        }
+    </script>
+
+</body>
+</html>
