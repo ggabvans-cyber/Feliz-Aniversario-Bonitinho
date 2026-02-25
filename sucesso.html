@@ -23,31 +23,29 @@
             border-radius: 30px;
             text-align: center;
             box-shadow: 0 0 40px rgba(0,0,0,0.6);
-            z-index: 100; /* Garante que a mensagem fique na frente das fotos */
+            z-index: 100; 
             max-width: 450px;
             position: relative;
         }
 
         h1 { color: #ff4d6d; }
 
-        /* Estilo das Fotos: Maiores e com Fade */
+        /* --- NOVO ESTILO DAS FOTOS --- */
         .foto-fade {
             position: absolute;
-            width: 250px; /* Aumentei o tamanho */
-            height: 250px; /* Aumentei o tamanho */
+            width: 280px; /* Fotos maiores como você pediu */
+            height: 280px;
             object-fit: cover;
             border-radius: 20px;
-            border: 5px solid white;
+            border: 6px solid white;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            opacity: 0; /* Começam invisíveis */
-            animation: fadeInOut 8s infinite; /* Animação de aparecer e sumir */
+            opacity: 0;
+            animation: fadeInOut 6s infinite;
         }
 
         @keyframes fadeInOut {
-            0% { opacity: 0; transform: scale(0.8); }
-            20% { opacity: 0.8; transform: scale(1); }
-            80% { opacity: 0.8; transform: scale(1); }
-            100% { opacity: 0; transform: scale(1.1); }
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
@@ -61,19 +59,40 @@
     </div>
 
     <script>
+        // Lista das suas fotos
         const nomesFotos = ['bobo1.jpg', 'bobo2.jpg', 'bobo3.jpg', 'juntos1.jpg', 'juntos2.jpg', 'juntos3.jpg', 'juntos4.jpg', 'juntos5.jpg', 'juntos6.jpg', 'juntos7.jpg', 'juntos8.jpg', 'juntos9.jpg', 'juntos10.jpg'];
+
+        // --- NOVA LÓGICA DE POSICIONAMENTO (LONGE DO CENTRO) ---
+        function posicionarFoto(img) {
+            const lado = Math.floor(Math.random() * 4); // Escolhe um dos 4 cantos da tela
+            
+            if (lado === 0) { // Topo
+                img.style.top = "5%"; 
+                img.style.left = Math.random() * 80 + "vw"; 
+            }
+            else if (lado === 1) { // Direita
+                img.style.right = "5%"; 
+                img.style.top = Math.random() * 80 + "vh"; 
+            }
+            else if (lado === 2) { // Baixo
+                img.style.bottom = "5%"; 
+                img.style.left = Math.random() * 80 + "vw"; 
+            }
+            else { // Esquerda
+                img.style.left = "5%"; 
+                img.style.top = Math.random() * 80 + "vh"; 
+            }
+        }
 
         nomesFotos.forEach((foto, i) => {
             let img = document.createElement('img');
             img.src = foto; 
             img.className = 'foto-fade';
             
-            // Posições aleatórias na tela (evitando o centro onde está a mensagem)
-            img.style.left = Math.random() * 70 + 'vw';
-            img.style.top = Math.random() * 70 + 'vh';
+            posicionarFoto(img); // Aplica a lógica de espalhar pelas bordas
             
-            // Delays diferentes para as fotos não aparecerem todas juntas
-            img.style.animationDelay = (i * 1.5) + 's';
+            // Delays para as fotos aparecerem em tempos diferentes
+            img.style.animationDelay = (i * 1.2) + 's';
 
             document.body.appendChild(img);
         });
