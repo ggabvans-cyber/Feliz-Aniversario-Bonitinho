@@ -5,8 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desafio do Amor ❤️</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f5f5f5; color: white; text-align: center; padding: 20px; }
-        .container { background: white; color: #333; max-width: 400px; margin: 50px auto; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        /* Centralização total da página */
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: #f5f5f5; 
+            margin: 0;
+            display: flex;
+            flex-direction: column; /* Organiza título em cima e modal embaixo */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background-color 0.5s ease;
+            overflow: hidden;
+        }
+
+        /* Estilo do Texto no Topo */
+        .titulo-topo {
+            position: absolute;
+            top: 40px;
+            font-size: 1.8rem;
+            color: #081534; /* Usando a cor principal que você definiu no index */
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .container { 
+            background: white; 
+            color: #333; 
+            width: 90%;
+            max-width: 400px; 
+            padding: 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
+            z-index: 2;
+        }
+
         .pergunta { font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; }
         .opcoes { display: flex; flex-direction: column; gap: 10px; }
         
@@ -15,87 +48,14 @@
             font-size: 1rem; font-weight: bold; transition: 0.3s; background: #eee;
         }
 
-        /* Animações e Cores */
+        /* Cores dos botões e Animação de Chacoalhar */
         .correto { background-color: #2ecc71 !important; color: white; animation: shake 0.5s; }
         .errado { background-color: #e74c3c !important; color: white; animation: shake 0.5s; }
 
+        /* Classes para animar o FUNDO da página */
+        .bg-correto { background-color: #d4edda !important; } 
+        .bg-errado { background-color: #f8d7da !important; }
+
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <div id="quiz-box">
-            <p class="pergunta" id="texto-pergunta">Carregando...</p>
-            <div class="opcoes" id="lista-opcoes"></div>
-        </div>
-    </div>
-
-    <script>
-        const perguntas = [
-            { q: "Qual minha cor favorita?", options: ["Azul", "Rosa", "Preto", "Roxo"], a: 0 },
-            { q: "Onde foi nosso primeiro beijo?", options: ["Carro", "Parque", "Cafeteria", "Shopping"], a: 3 },
-            { q: "Oque eu mais disse no nosso primeiro encontro?", options: ["Entendi", "Hmmm?", "Você é Engraçado", "Legal"], a: 1 },
-            { q: "Qual dia do meu aniversario?", options: ["07", "17", "06", "27"], a: 0 },
-            { q: "Qual o dia do nosso aniversario de namoro?", options: ["28", "27", "02", "12"], a: 1 },
-            { q: "Quem disse 'te amo' primeiro?", options: ["Eu", "Você", "Os dois", "Ninguém"], a: 1 },
-            { q: "Oque eu mais gosto de fazer?", options: ["Assistir Séries", "Comer", "Dormir", "Escutar Musica"], a: 2 },
-            { q: "Qual meu jogo favorito?", options: ["GTA", "The Sims 4", "Hogwarts", "It Takes Two"], a: 2 }
-        ];
-
-        let indexAtual = 0;
-        let erros = 0;
-
-        function carregarPergunta() {
-            const p = perguntas[indexAtual];
-            document.getElementById("texto-pergunta").innerText = p.q;
-            const container = document.getElementById("lista-opcoes");
-            container.innerHTML = "";
-
-            p.options.forEach((opt, i) => {
-                const btn = document.createElement("button");
-                btn.innerText = opt;
-                btn.onclick = () => checarResposta(i, btn);
-                container.appendChild(btn);
-            });
-        }
-
-        function checarResposta(escolha, btn) {
-            const correta = perguntas[indexAtual].a;
-            
-            if (escolha === correta) {
-                btn.classList.add("correto");
-                setTimeout(() => proxima(), 800);
-            } else {
-                btn.classList.add("errado");
-                erros++;
-                setTimeout(() => proxima(), 800);
-            }
-        }
-
-        function proxima() {
-            indexAtual++;
-            if (indexAtual < perguntas.length) {
-                carregarPergunta();
-            } else {
-                finalizar();
-            }
-        }
-
-        function finalizar() {
-            // Se errar mais da metade (mais de 2 de 4)
-            if (erros > perguntas.length / 2) {
-                window.location.href = "errou.html";
-            } else {
-                alert("Você passou! ❤️ Aqui está seu presente...");
-            }
-        }
-
-        carregarPergunta();
-    </script>
-</body>
-</html>
+            25% { transform: translateX(-1
